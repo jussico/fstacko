@@ -1,0 +1,45 @@
+
+note over käyttäjä:
+käyttäjä on jotenkin tupsahtanut sivulle https://fullstack-exampleapp.herokuapp.com/notes
+end note over
+
+käyttäjä->selain: Käyttäjä kirjoittaa sivulla olevalle lomakkeelle "jeps" ja painaa Save-nappia.
+
+selain->palvelin: HTTP POST Header "https://fullstack-exampleapp.herokuapp.com/new_note"
+selain->palvelin: HTTP POST Form data "note: jeps"
+note over palvelin:
+palvelin suorittaa jotain POST-kutsun sisällölle.
+end note over 
+palvelin-->selain: HTTP 302 Found response code
+
+note over selain:
+saatuaan koodin 302 selain ohjataan lataamaan sivu uudestaan ja lähettää uuden koko sivun latauspyynnön
+end note over
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: HTTP 200 OK response code
+palvelin-->selain: Response payload - palvelimella /notes -stringiin mäpätty HTML-koodi ( esim. notes.html tai notes/index.html tiedoston sisältö )
+
+note over selain:
+selain alkaa suorittaa html-sivua ja alkaa pyytää palvelimelta siinä määriteltyjä tiedostoja /main.css ja main.js
+end note over 
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: HTTP 304 Not Modified response code
+palvelin-->selain: Response payload - main.css tiedoston sisältö
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: HTTP 304 Not Modified response code
+palvelin-->selain: Response payload - main.js tiedoston sisältö
+
+note over selain:
+selain suorittaa main.js-scriptiä joka pyytää data.json dataa palvelimelta
+end note over 
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: HTTP 200 OK response code
+palvelin-->selain: Response payload - [{"content":"HTML is easy","date":"2019-05-23T17:30:31.098Z"},{ ... ]
+
+note over selain:
+selain suorittaa käytetyn XMLHttpRequest -instanssin onreadystatechange -tapahtumaan liitetyn funktion joka muokkaa DOM:ia ja renderöi uuden palvelimelta saadun listan sivulle.
+end note over 

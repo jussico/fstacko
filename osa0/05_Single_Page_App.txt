@@ -1,0 +1,28 @@
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa
+palvelin-->selain: HTTP 200 OK response code
+palvelin-->selain: Response payload - palvelimella /spa -stringiin mäpätty HTML-sivu (esim. spa.html tai spa/index.html tiedoston sisältö).
+
+note over selain:
+selain alkaa suorittaa html-sivua ja alkaa pyytää palvelimelta siinä määriteltyjä tiedostoja /main.css ja spa.js
+end note over 
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: HTTP 200 OK response code
+palvelin-->selain: Response payload - main.css tiedoston sisältö
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/spa.js
+palvelin-->selain: HTTP 200 OK response code
+palvelin-->selain: Response payload - spa.js tiedoston sisältö
+
+note over selain:
+selain suorittaa spa.js-scriptiä joka pyytää data.json dataa palvelimelta
+end note over 
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: HTTP 200 OK response code
+palvelin-->selain: Response payload - [{"content":"HTML is easy","date":"2019-05-23T17:30:31.098Z"}, ... ]
+
+note over selain:
+selain suorittaa käytetyn XMLHttpRequest -instanssin onreadystatechange -tapahtumaan liitetyn funktion joka muokkaa DOM:ia ja renderöi uuden palvelimelta saadun listan sivulle.
+end note over 

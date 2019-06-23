@@ -1,0 +1,24 @@
+
+note over käyttäjä:
+    käyttäjä on jotenkin tupsahtanut sivulle https://fullstack-exampleapp.herokuapp.com/spa
+note over
+
+käyttäjä->selain: käyttäjä kirjoittaa sivulla olevaan lomaakkeeseen "joo" ja painaa Save-nappia
+
+note over selain:
+    selain lisää käyttäjän kirjoittaman sanan listan tietorakenteeseen ja muokkaa DOM:ia piirtäen koko listan uudestaan.
+note over
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+selain->palvelin: Request Payload: {content: "joo", date: "2019-06-22T10:00:59.189Z"}
+
+note over palvelin:
+palvelin tekee jotain saamalleen datalle
+end note over 
+
+palvelin-->selain: HTTP 201 CREATED response code
+palvelin-->selain: Response payload - {"message":"note created"}
+
+note over selain:
+selain suorittaa käytetyn XMLHttpRequest -instanssin onreadstatechange -tapahtumaan liitetyn funktion joka ehkä logittaa tekstiä selaimen logiin muttei muuta.
+end note over
