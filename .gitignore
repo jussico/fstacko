@@ -1,3 +1,5 @@
 !.gitignore
 node_modules
-osa3
+.env
+kutsu_mongoo_listaa.sh
+kutsu_mongoo_add.sh
