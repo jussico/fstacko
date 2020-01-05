@@ -1,0 +1,102 @@
+
+### get all
+
+GET http://localhost:3003/api/blogs HTTP/1.1
+
+### put one
+
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-type: application/json
+
+{
+    "title": "Uusi parempi juttuni",
+    "author": "minä itse",
+    "url": "http://www.juupajuu.com",
+    "likes": 7
+}
+
+### put second one
+
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-type: application/json
+
+{
+    "title": "Toinen parempi juttuni",
+    "author": "minä itse",
+    "url": "http://www.juupajuu.com/joojo",
+    "likes": 0
+}
+
+### put third one
+
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-type: application/json
+
+{
+    "title": "kolmas paras juttuni",
+    "author": "minä itse",
+    "url": "http://www.juupajuu.com/joojojojoojoo",
+    "likes": 0
+}
+
+### put fourth, christmasy, one
+
+POST http://localhost:3003/api/blogs HTTP/1.1
+Content-type: application/json
+
+{
+    "title": "jouluinen juttuni",
+    "author": "minä itse olin joulupukki",
+    "url": "http://www.juupajuu.com/joojojojoojooJoulupukki",
+    "likes": 0
+}
+
+### get all users
+
+GET http://localhost:3003/api/users HTTP/1.1
+
+### add user
+
+POST http://localhost:3003/api/users HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "root",
+    "password": "tosisalainen",
+    "name": "Superuser"
+}
+
+### add another user
+
+POST http://localhost:3003/api/users HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "jussi",
+    "password": "supers",
+    "name": "Jussi Asp"
+}
+
+
+### kirjautuminen
+
+POST http://localhost:3003/api/login HTTP/1.1
+Content-type: application/json
+
+{
+    "username": "jussi",
+    "password": "supers"
+}
+
+### create blog with token
+
+POST http://localhost:3003/api/blogs
+Content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imp1c3NpIiwiaWQiOiI1ZTEyMWVkYWI0YjYxMzJmYjgxYTYwNDIiLCJpYXQiOjE1NzgyNDU4Nzl9.Wyxxf-Hbv5qVuJyqrijs9-e0yTaq2UgMKuVOAd_oWzg
+
+{
+    "title": "2020 juttuni",
+    "author": "minä itse vuonna 2020",
+    "url": "http://www.juupajuu.com",
+    "likes": 202020
+}
